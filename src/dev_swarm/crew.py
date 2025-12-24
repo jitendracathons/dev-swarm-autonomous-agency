@@ -1,6 +1,6 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import SerperDevTool, FileWriterTool, FileReadTool, DirectoryReadTool
+from crewai_tools import SerperDevTool, FileReadTool, DirectoryReadTool
 from pydantic import BaseModel, Field
 from .tools.system_tools import AdvancedFileWriterTool
 from .tools.qa_tools import CodeExecutionTool
@@ -28,21 +28,23 @@ class ProjectBlueprint(BaseModel):
 
 @CrewBase
 class DevSwarmCrew():
-    """DevSwarm: The Self-Configuring Autonomous Agency"""
+    """DevSwarm: l'agence autonome auto-configurable"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
     
-    # Use the Manager Model for the high-level thinkers
+    # Utilisation des variables d'environnement pour les modèles
     high_reasoning_model = os.getenv("MANAGER_MODEL", "gpt-4o")
     standard_model = os.getenv("MODEL", "gpt-4o-mini")
 
     def hire_dynamic_agent(self, schema: AgentSchema) -> Agent:
+        """Instancie un agent spécialisé dynamiquement."""
         tool_map = {
             "FileWriterTool": AdvancedFileWriterTool(),
             "FileReadTool": FileReadTool(),
             "SerperDevTool": SerperDevTool(),
-            "DirectoryReadTool": DirectoryReadTool(directory_path='project_output/src')
+            "DirectoryReadTool": DirectoryReadTool(directory_path='project_output/src'),
+            "CodeExecutionTool": CodeExecutionTool()
         }
         assigned_tools = [tool_map[t] for t in schema.tools if t in tool_map]
         
@@ -51,7 +53,7 @@ class DevSwarmCrew():
             goal=schema.goal,
             backstory=schema.backstory,
             tools=assigned_tools,
-            llm=self.standard_model, # Brawn
+            llm=self.standard_model,
             verbose=True
         )
 
@@ -60,7 +62,7 @@ class DevSwarmCrew():
         return Agent(
             config=self.agents_config['architect'], 
             tools=[SerperDevTool(), AdvancedFileWriterTool()],
-            llm=self.high_reasoning_model, # Brain
+            llm=self.high_reasoning_model,
             verbose=True
         )
 
@@ -73,9 +75,10 @@ class DevSwarmCrew():
 
     @crew
     def crew(self) -> Crew:
+        # On ne passe que ce qui est défini ici
         return Crew(
-            agents=self.agents,
-            tasks=self.tasks,
+            agents=[self.architect()],
+            tasks=[self.discovery_design_task()],
             process=Process.sequential,
             verbose=True
         )
