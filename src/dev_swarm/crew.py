@@ -28,25 +28,31 @@ class ProjectBlueprint(BaseModel):
 
 @CrewBase
 class DevSwarmCrew():
-    """DevSwarm: l'agence autonome auto-configurable"""
+    """DevSwarm: The Self-Configuring Autonomous Agency"""
 
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
     
-    # Utilisation des variables d'environnement pour les modèles
     high_reasoning_model = os.getenv("MANAGER_MODEL", "gpt-4o")
     standard_model = os.getenv("MODEL", "gpt-4o-mini")
 
     def hire_dynamic_agent(self, schema: AgentSchema) -> Agent:
-        """Instancie un agent spécialisé dynamiquement."""
+        """Instantiates a new specialist agent with mandatory file-writing tools."""
+        writer_tool = AdvancedFileWriterTool()
+        
         tool_map = {
-            "FileWriterTool": AdvancedFileWriterTool(),
+            "FileWriterTool": writer_tool,
+            "Advanced FileWriter": writer_tool,
             "FileReadTool": FileReadTool(),
             "SerperDevTool": SerperDevTool(),
             "DirectoryReadTool": DirectoryReadTool(directory_path='project_output/src'),
             "CodeExecutionTool": CodeExecutionTool()
         }
+        
+        # Combine tools from blueprint and always ensure writer is present
         assigned_tools = [tool_map[t] for t in schema.tools if t in tool_map]
+        if writer_tool not in assigned_tools:
+            assigned_tools.append(writer_tool)
         
         return Agent(
             role=schema.role,
@@ -54,7 +60,8 @@ class DevSwarmCrew():
             backstory=schema.backstory,
             tools=assigned_tools,
             llm=self.standard_model,
-            verbose=True
+            verbose=True,
+            allow_delegation=False # Force them to work rather than talk to a manager
         )
 
     @agent
@@ -75,7 +82,6 @@ class DevSwarmCrew():
 
     @crew
     def crew(self) -> Crew:
-        # On ne passe que ce qui est défini ici
         return Crew(
             agents=[self.architect()],
             tasks=[self.discovery_design_task()],
