@@ -3,23 +3,32 @@ from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 
 class FileWriteInput(BaseModel):
-    path: str = Field(..., description="The full path including filename to write to (e.g., 'project_output/src/main.py').")
+    path: str = Field(..., description="The name of the file to save (e.g., 'server.py').")
     content: str = Field(..., description="The code or text content to save.")
 
 class AdvancedFileWriterTool(BaseTool):
     name: str = "Advanced FileWriter"
-    description: str = "Writes content to a file. Automatically creates directories if they don't exist. Use this for all file creation."
+    description: str = "Mandatory tool for saving code. It forces files into the project_output/src directory."
     args_schema: type[BaseModel] = FileWriteInput
 
     def _run(self, path: str, content: str) -> str:
         try:
-            # Create directory if it doesn't exist
-            directory = os.path.dirname(path)
-            if directory and not os.path.exists(directory):
-                os.makedirs(directory, exist_ok=True)
+            # 1. Clean the filename (remove any directories the AI tried to prepend)
+            filename = os.path.basename(path)
+            if not filename:
+                return "❌ ERROR: No filename provided."
+
+            # 2. Define the absolute safe path
+            base_dir = os.path.join(os.getcwd(), "project_output", "src")
+            safe_path = os.path.join(base_dir, filename)
             
-            with open(path, "w") as f:
+            # 3. Ensure the folder exists
+            os.makedirs(base_dir, exist_ok=True)
+            
+            with open(safe_path, "w") as f:
                 f.write(content)
-            return f"Successfully wrote file to {path}"
+            
+            return f"✅ SUCCESS: File saved correctly to safe zone at: {safe_path}"
+        
         except Exception as e:
-            return f"Error writing file: {str(e)}"
+            return f"❌ ERROR: System failed to write file. {str(e)}"
